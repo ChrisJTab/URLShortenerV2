@@ -1,1 +1,2 @@
-utorid: tabbahch email: christian.tabbah@mail.utoronto.ca utorid: duvallou email: louisphilippe.duval@mail.utoronto.ca utorid: hokinmat email: matthew.hokin@mail.utoronto.ca
+# URLShortener
+URLShortener second version using Docker Swarm, Cassandra, Redis and Python instead of doing it from scratch
