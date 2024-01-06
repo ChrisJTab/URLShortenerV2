@@ -1,0 +1,114 @@
+Individual 10%:
+UTORID1: duvallou	4/4
+UTORID2: hokinmat	4/4
+UTORID3: tabbahch	4/4
+
+	4 - Seems to understand all parts of the system 
+	3 - Understands most parts of the system, clear one or two parts not understood 
+	2 - Many parts of the system are not well understood
+	1 - Only demonstrated knowledge of one part of the system. 
+	0 - No understanding of the system
+Summary:
+Duvallou: install tailscale, UI visualizer, cassandra scripts, docker starter code, scripts for Docker, Dockerfile, barebone http server for Flask, heavy lifting on docker compose.
+Hokinmat: performance testing suite, diagrams, http server, writer, bug fixing for redis, logger
+Tabbahch: barebone http server, Cassandra/redis connection, writer connection
+
+Architecture planning together.
+
+Group members all had a good understanding.
+Conceptual Misunderstandings: 
+
+Architecture (20%): 4/4
+
+        4 - Architecture has all key components
+        3 - Missing 1 key component 
+        2 - Many parts of the system are missing
+        1 - Has a few key components	
+        0 - Poor/vague architecture diagram
+
+Report 20%: 
+
+	17.5/20 Discussing the system's architecture
+		2/3 Diagram showing
+			[1] 1 Application system
+			[0] 1 Monitoring system --> missing?
+			[1] 1 Data flow
+
+		3/3 Application
+			[1] 1 Docker
+			[1] 1 Redis
+			[1] 1 Cassandra
+
+		12.5/14 Discussion of each of the following with respect to your system.
+			[1] 1 Consistency
+			[1] 1 Availablity
+			[1] 1 Parition tolarance
+			[1] 1 Data paritioning
+			[1] 1 Data replication
+			[1] 1 Load balancing
+			[1] 1 Caching
+			[1] 1 Process disaster recovery
+			[0] 1 Data disaster recovery --> This seems missing from your "Healing" section.
+			[1] 1 Orchestration
+			[0.5] 1 Healthcheck --> Do you also check your data?
+			[1] 1 Horizontal scalability
+			[1] 1 Vertical scalability
+			[1] 1 Well formatted document
+
+	2/2 Discussing the system's performance
+		[1] 1 Graph showing performance of system under load1
+		[1] 1 Analysis of system performance under load1
+
+	1/1 Discussion of the tools used during testing
+
+Demo (weight 50%): 23/25
+
+	8/8 Functionality
+		0/5 Long to Short (PUT)
+			[1] 1 Good request. 201 or 200
+			[1] 1 Bad request. 400
+			[1] 1 Cached in Redis
+			[1] 1 Logged persistently
+                                       [1] 1 Stored in cassandra
+		0/3 Short to Long (GET)
+			[1] 1 Good request. 307
+			[1] 1 Bad request. 404
+			[1] 1 Uses Redis
+		
+	6/6 Monitoring and Health Check
+    		[1] 1 Monitoring system watching the health of the url shortner system
+		[1] 1 Health check implemented in URL Shortner 
+			Can check with docker container ps
+    		[1] 1 Monitoring system watching the health of the Redis cluster
+    		[1] 1 Monitoring system watching the health of the Cassandra cluster
+			Can't just bring up terminal and type: nodetool status, as a one off
+    		[1] 1 Monitoring logger and writer
+    		[1] 1 Shows all relevant information (UI or on terminal)
+			See status of each replica
+
+	3/3 Disaster recovery
+		[1] 1 Url shortner recovers/heals from a node dying
+			Kill a node and then bring it back
+
+		[1] 1 Redis recovers/heals from a node dying
+			Kill a redis node, see system functions, then bring redis back up
+
+		[1] 1 Data is persistent after the system recovers/heals from a node dying
+
+	4/4 Scalability (scalability is limited to the number of VMs)
+		[1] 1 Adding a node to the Url shortner system
+			docker service ls + monitor system
+		[1] 1 Adding a node to the Redis cluster → confirm with Arnold
+			rediscli + monitor system
+		[1] 1 Adding a node to the Cassandra cluster
+			nodetool status + monitor system
+		[1] 1 Removing all added nodes
+			monitor system
+
+	2/4 Orchestration
+		[1] 1 Automate launching the system onto the given nodes
+		[0] 1 Automate adding a host to the cluster → group did it, but without a script
+		[0] 1 Automate removing a host from the cluster → group did it, but without a script
+		[1] 1 Automate shutdowning the cluster
+
+

@@ -1,0 +1,11 @@
+Sources: https://hub.docker.com/_/registry
+
+
+To install and start registry on the sever:
+
+	docker run -d -p 5000:5000 --restart always --name registry registry:latest
+
+
+On a Tailscale node, to proxy registry in HTTPS, run:
+	
+	tailscale serve --bg 5000
